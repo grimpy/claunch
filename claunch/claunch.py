@@ -33,6 +33,6 @@ class Claunch:
             env.update(config.get('env', {}))
             cmd = ["python3", "-m", config["module"]] + config.get('args', [])
             print("Launching {}".format(" ".join(cmd)))
-            subprocess.run(cmd, env=env)
+            subprocess.run(" ".join(cmd), env=env, shell=True)
         else:
             raise RuntimeError(f"Launch type {config['type']} is not supported")

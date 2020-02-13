@@ -2,7 +2,7 @@
 from setuptools import setup
 
 setup(name='claunch',
-      version='0.1',
+      version='0.2',
       description='Launch process from vscode launch.json file',
       author='Jo De Boeck',
       author_email='deboeck.jo@gmail.com',
