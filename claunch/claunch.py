@@ -31,7 +31,12 @@ class Claunch:
         if config['type'] == 'python':
             env = os.environ.copy()
             env.update(config.get('env', {}))
-            cmd = ["python3", "-m", config["module"]] + config.get('args', [])
+            args = config.get('args', [])
+            for idx, arg in enumerate(args):
+                if arg.startswith('${env:'):
+                    key = arg.split(":")[-1][:-1]
+                    args[idx] = env.get(key, '')
+            cmd = ["python3", "-m", config["module"]] + args
             print("Launching {}".format(" ".join(cmd)))
             subprocess.run(" ".join(cmd), env=env, shell=True)
         else:
